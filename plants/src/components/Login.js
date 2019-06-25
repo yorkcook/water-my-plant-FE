@@ -1,6 +1,12 @@
 import React, { Component } from "react";
-import { Button, Form } from "reactstrap";
+
+import Button from "@material-ui/core/Button";
 import styled from "styled-components";
+import axios from "axios";
+
+const Header = styled.div`
+  background: white;
+`;
 
 class Login extends Component {
   state = {
@@ -13,29 +19,50 @@ class Login extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  logIn = e => {
+    e.prevent.default();
+    axios
+      .post("https://water-my-plant.herokuapp.com/api/login", this.state)
+      .then(res => {
+        console.log(res);
+      })
+
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
-      <div>
-        <h2>Log In</h2>
-        <Form>
-          <input
-            type="text"
-            placeholder="email"
-            name="useremail"
-            value={this.state.useremail}
-            onChange={this.handleChange}
-          />
-          <input
-            type="text"
-            placeholder="password"
-            name="password"
-            value={this.state.password}
-            onChange={this.handleChange}
-          />
+      <Header>
+        <div>
+          <h2>Log In</h2>
 
-          <Button>Login</Button>
-        </Form>
-      </div>
+          <form onSubmit={this.logIn}>
+            <div>
+              <input
+                type="text"
+                placeholder="email"
+                name="useremail"
+                value={this.state.useremail}
+                onChange={this.handleChange}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleChange}
+              />
+            </div>
+            <Button variant="contained" color="primary">
+              Login
+            </Button>
+          </form>
+        </div>
+      </Header>
     );
   }
 }
