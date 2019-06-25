@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Button } from "reactstrap";
+import { Button, Form } from "reactstrap";
+import styled from "styled-components";
 
 class Login extends Component {
   state = {
@@ -7,25 +8,33 @@ class Login extends Component {
     password: ""
   };
 
+  handleChange = e => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   render() {
     return (
       <div>
         <h2>Log In</h2>
-        <form>
+        <Form>
           <input
             type="text"
             placeholder="email"
             name="useremail"
             value={this.state.useremail}
+            onChange={this.handleChange}
           />
           <input
             type="text"
             placeholder="password"
             name="password"
             value={this.state.password}
+            onChange={this.handleChange}
           />
-        </form>
-        <Button>Login</Button>
+
+          <Button>Login</Button>
+        </Form>
       </div>
     );
   }
