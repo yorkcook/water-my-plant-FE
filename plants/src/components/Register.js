@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-//import axios from "axios";
+import axios from "axios";
 
 class Register extends Component {
   state = {
@@ -16,7 +16,16 @@ class Register extends Component {
   };
 
   addUser = e => {
-    e.preventDefault();
+    e.prevent.default();
+    axios
+      .post("https://water-my-plant.herokuapp.com/api/register", this.state)
+      .then(res => {
+        console.log("response", res.data);
+      })
+
+      .catch(err => {
+        console.log("error", err);
+      });
   };
 
   render() {

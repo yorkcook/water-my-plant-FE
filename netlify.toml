@@ -1,9 +1,8 @@
-[build]
+[[build]]
 base = "plants/"
 publish="plants/build/"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
-
   status = 200

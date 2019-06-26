@@ -20,15 +20,15 @@ class Login extends Component {
   };
 
   logIn = e => {
-    e.prevent.default();
+    e.preventDefault();
     axios
       .post("https://water-my-plant.herokuapp.com/api/login", this.state)
       .then(res => {
-        console.log(res);
+        console.log("response", res.data);
       })
 
       .catch(err => {
-        console.log(err);
+        console.log("error", err);
       });
   };
 
@@ -57,7 +57,7 @@ class Login extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={this.logIn}>
               Login
             </Button>
           </form>
