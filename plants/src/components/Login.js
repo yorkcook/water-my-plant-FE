@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import Button from "@material-ui/core/Button";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -57,9 +56,7 @@ class Login extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <Button variant="contained" color="primary" onClick={this.logIn}>
-              Login
-            </Button>
+            <button onClick={this.logIn}>Login</button>
           </form>
         </div>
       </Header>

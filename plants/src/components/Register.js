@@ -16,7 +16,7 @@ class Register extends Component {
   };
 
   addUser = e => {
-    e.prevent.default();
+    e.preventDefault();
     axios
       .post("https://water-my-plant.herokuapp.com/api/register", this.state)
       .then(res => {
