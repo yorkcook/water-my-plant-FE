@@ -1,6 +1,6 @@
-[[build]]
-base = "plants/"
-publish="plants/build/"
+[build]
+  base = "plants/"
+  publish="plants/build/"
 
 [[redirects]]
   from = "/*"
