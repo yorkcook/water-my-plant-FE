@@ -4,9 +4,8 @@ import axios from "axios";
 
 class Register extends Component {
   state = {
-    useremail: "",
+    username: "",
     password: "",
-    email: "",
     phone: ""
   };
 
@@ -21,6 +20,8 @@ class Register extends Component {
       .post("https://water-my-plant.herokuapp.com/api/register", this.state)
       .then(res => {
         console.log("response", res.data);
+        localStorage.setItem("jwt", res.data.token);
+        this.props.history.push("./users");
       })
 
       .catch(err => {
@@ -36,9 +37,9 @@ class Register extends Component {
           <div>
             <input
               type="text"
-              placeholder="useremail"
-              name="useremail"
-              value={this.state.useremail}
+              placeholder="username"
+              name="username"
+              value={this.state.username}
               onChange={this.handleChange}
             />
           </div>
@@ -54,15 +55,6 @@ class Register extends Component {
           <div>
             <input
               type="text"
-              placeholder="useremail"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
               placeholder="phonenumber"
               name="phone"
               value={this.state.phone}
@@ -70,7 +62,7 @@ class Register extends Component {
             />
           </div>
         </form>
-        <button>Register</button>
+        <button onClick={this.addUser}>Register</button>
       </div>
     );
   }

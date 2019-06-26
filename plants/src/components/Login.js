@@ -9,7 +9,7 @@ const Header = styled.div`
 
 class Login extends Component {
   state = {
-    useremail: "",
+    username: "",
     password: ""
   };
 
@@ -24,8 +24,9 @@ class Login extends Component {
       .post("https://water-my-plant.herokuapp.com/api/login", this.state)
       .then(res => {
         console.log("response", res.data);
+        localStorage.setItem("jwt", res.data.token);
+        this.props.history.push("./users");
       })
-
       .catch(err => {
         console.log("error", err);
       });
@@ -41,9 +42,9 @@ class Login extends Component {
             <div>
               <input
                 type="text"
-                placeholder="email"
-                name="useremail"
-                value={this.state.useremail}
+                placeholder="name"
+                name="username"
+                value={this.state.username}
                 onChange={this.handleChange}
               />
             </div>
