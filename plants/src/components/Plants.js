@@ -26,7 +26,40 @@ class Plants extends Component {
   };
 
   render() {
-    return <div />;
+    return (
+      <div>
+        <form onSubmit={this.addPlant}>
+          <div>
+            <input
+              type="text"
+              placeholder="Plant Name"
+              name="name"
+              value={this.state.name}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="description"
+              name="description"
+              value={this.state.description}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="schedule"
+              name="schedule"
+              value={this.state.schedule}
+              onChange={this.handleChange}
+            />
+          </div>
+          <button onClick={this.addPlant}>Add Plants</button>
+        </form>
+      </div>
+    );
   }
 }
 

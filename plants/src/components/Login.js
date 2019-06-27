@@ -1,10 +1,30 @@
 import React, { Component } from "react";
-
+import { Form } from "reactstrap";
 import styled from "styled-components";
 import axios from "axios";
 
 const Header = styled.div`
-  background: white;
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  width: 20%;
+  margin-left: 500px;
+  padding-bottom: 20px
+  height: 100%;
+`;
+
+const Button = styled.button`
+  background: transparent;
+  border-radius: 3px;
+  border: 2px solid green;
+  color: green;
+  margin: 0 3em;
+  margin-top: 20px;
+  padding: 0.25em 1em;
+`;
+
+const Div = styled.div`
+  margin-bottom: 20px;
 `;
 
 class Login extends Component {
@@ -25,7 +45,7 @@ class Login extends Component {
       .then(res => {
         console.log("response", res.data);
         localStorage.setItem("jwt", res.data.token);
-        this.props.history.push("./users");
+        this.props.history.push("https://water-my-plant.herokuapp.com/plants/");
       })
       .catch(err => {
         console.log("error", err);
@@ -38,8 +58,8 @@ class Login extends Component {
         <div>
           <h2>Log In</h2>
 
-          <form onSubmit={this.logIn}>
-            <div>
+          <Form onSubmit={this.logIn}>
+            <Div>
               <input
                 type="text"
                 placeholder="name"
@@ -47,7 +67,7 @@ class Login extends Component {
                 value={this.state.username}
                 onChange={this.handleChange}
               />
-            </div>
+            </Div>
             <div>
               <input
                 type="text"
@@ -57,8 +77,8 @@ class Login extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <button onClick={this.logIn}>Login</button>
-          </form>
+            <Button onClick={this.logIn}>Login</Button>
+          </Form>
         </div>
       </Header>
     );
